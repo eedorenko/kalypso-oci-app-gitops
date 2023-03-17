@@ -10,11 +10,11 @@
   - name: fetch package
     get_url:
       url: https://eedorenko.github.io/kalypso-oci-app-src/hello-world-0.0.1.deb
-      dest: hello-world-0.0.1.deb
+      dest: ./hello-world-0.0.1.deb
     when: deb_package_check.stdout != ""
 
   - name: install package
     # become: true
     apt:
-      deb: hello-world-0.0.1.deb
+      deb: ./hello-world-0.0.1.deb
     when: deb_package_check.stdout != ""
