@@ -1,9 +1,20 @@
 ---
 - hosts: localhost
-  tasks:
-  - name: Update all packages to their latest version
-    ansible.builtin.apt:
-      name: "*"
-      state: latest
-      
- 
+  tasks:       
+  - name: check package status
+    command: dpkg-query -W | grep "sample 0.0.1" | wc -l  
+    register: deb_package_check
+    failed_when: deb_package_check.rc > 1
+    changed_when: deb_package_check.stdout == "0"
+
+  - name: fetch package
+    get_url:
+      url: https://eedorenko.github.io/kalypso-oci-app-src/hello-world-0.0.1.deb
+      dest: hello-world-0.0.1.deb
+    when: deb_package_check.stdout == "0"
+
+  - name: install package
+    # become: true
+    apt:
+      deb: hello-world-0.0.1.deb
+    when: deb_package_check.stdout == "0"
