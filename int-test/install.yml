@@ -18,6 +18,6 @@
     shell: |
       dpkg -x ./hello-world-0.0.1.deb .
       pkill sample
-      PORT=9090 ./usr/bin/sample &
-    when: deb_package_check.stdout == ""      
+      PORT=8080 ./usr/bin/sample &
+    # when: deb_package_check.stdout == ""      
 
