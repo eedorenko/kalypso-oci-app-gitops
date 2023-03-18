@@ -3,7 +3,7 @@
   tasks:       
   - name: check package already exists
     shell:
-      cmd: ls | grep hello-world-0.0.1.deb
+      cmd: ls $HOME | grep hello-world-0.0.1.deb
     register: deb_package_check
     failed_when: deb_package_check.rc > 1
     changed_when: deb_package_check.stdout == ""
@@ -11,12 +11,12 @@
   - name: fetch package
     get_url:
       url: https://eedorenko.github.io/kalypso-oci-app-src/hello-world-0.0.1.deb
-      dest: ./hello-world-0.0.1.deb
+      dest: $HOME/hello-world-0.0.1.deb
     when: deb_package_check.changed
 
   - name: install application
     shell: |
-      dpkg -x ./hello-world-0.0.1.deb .
+      dpkg -x $HOME/hello-world-0.0.1.deb $HOME
       pkill sample
-      PORT=8080 ./usr/bin/sample &
+      PORT=8080 $HOME/usr/bin/sample &
 
