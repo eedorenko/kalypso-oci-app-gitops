@@ -21,5 +21,3 @@
       . /home/dev-hello-world-app-int-test/platform-config
       PORT=9091 $HOME/usr/bin/sample &
 
-
-
