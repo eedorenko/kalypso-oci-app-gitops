@@ -5,18 +5,18 @@
     command: ls | grep hello-world-0.0.1.deb
     register: deb_package_check
     failed_when: deb_package_check.rc > 1
-    changed_when: deb_package_check.stdout != ""
+    changed_when: deb_package_check.stdout == ""
 
   - name: fetch package
     get_url:
       url: https://eedorenko.github.io/kalypso-oci-app-src/hello-world-0.0.1.deb
       dest: ./hello-world-0.0.1.deb
-    when: deb_package_check.stdout != ""
+    when: deb_package_check.stdout == ""
 
   - name: unpack application
     commad: dpkg -x ./hello-world-0.0.1.deb .
-    when: deb_package_check.stdout != ""
+    disabled: deb_package_check.stdout != ""
 
   - name: restart application
     commad: pkill sample && PORT=9090 ./usr/bin/sample
-    when: deb_package_check.stdout != ""
+    disabled: deb_package_check.stdout != ""
