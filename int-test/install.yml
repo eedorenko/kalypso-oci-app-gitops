@@ -2,7 +2,8 @@
 - hosts: localhost
   tasks:       
   - name: check package already exists
-    command: ls | grep hello-world-0.0.1.deb
+    shell:
+      cmd: ls | grep hello-world-0.0.1.deb
     register: deb_package_check
     failed_when: deb_package_check.rc > 1
     changed_when: deb_package_check.stdout == ""
