@@ -18,5 +18,6 @@
     shell: |
       dpkg -x $HOME/hello-world-0.0.1.deb $HOME
       pkill sample
-      PORT=8080 $HOME/usr/bin/sample &
+      PORT=9090 $HOME/usr/bin/sample &
+
 
