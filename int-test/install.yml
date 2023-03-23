@@ -9,6 +9,3 @@
       package_storage_url: https://eedorenko.github.io/kalypso-oci-app-src/hello-world-0.0.1.deb
       app_config_file: app-config.sh
       command: sample
-
-
-
