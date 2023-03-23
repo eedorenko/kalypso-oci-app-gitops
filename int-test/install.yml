@@ -5,6 +5,6 @@
   ansible.builtin.import_playbook: intstall-deb-package.yml
   vars:
     package_name: hello-world-0.0.1.deb
-    package_url: https://eedorenko.github.io/kalypso-oci-app-src/hello-world-0.0.1.deb
-    app-config-file: app-config.sh
+    package_storage_url: https://eedorenko.github.io/kalypso-oci-app-src
+    app_config_file: app-config.sh
     command: sample
