@@ -1,6 +1,7 @@
 ---
 - hosts: localhost
   gather_facts: no
+  
 - name: install application
   ansible.builtin.import_playbook: /opt/kalypso/install-deb-package.yml
   vars:
