@@ -14,12 +14,12 @@
       dest: $HOME/hello-world-0.0.1.deb
     when: deb_package_check.changed
 
-  - name: get the username running the deploy
-    become: false
-    local_action: command whoami
-    register: username_on_the_host
+  # - name: get the username running the deploy
+  #   become: false
+  #   local_action: command whoami
+  #   register: username_on_the_host
 
-  - debug: var=username_on_the_host
+  # - debug: var=username_on_the_host
 
 
 
