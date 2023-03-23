@@ -10,4 +10,3 @@
       app_config_file: app-config.sh
       command: sample
       args: ""
-
