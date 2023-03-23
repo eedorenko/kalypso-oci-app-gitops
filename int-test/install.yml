@@ -21,6 +21,8 @@
 
   - debug: var=username_on_the_host
 
+
+
   - name: install application
     shell: |
       dpkg -x $HOME/hello-world-0.0.1.deb $HOME
