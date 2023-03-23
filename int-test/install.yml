@@ -2,7 +2,7 @@
 - hosts: localhost
   gather_facts: no
 - name: install application
-  ansible.builtin.import_playbook: intstall-deb-package.yml
+  ansible.builtin.import_playbook: /opt/kalypso/install-deb-package.yml
   vars:
     package_name: hello-world-0.0.1.deb
     package_storage_url: https://eedorenko.github.io/kalypso-oci-app-src
