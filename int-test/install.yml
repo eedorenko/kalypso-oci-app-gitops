@@ -22,11 +22,9 @@
   # - debug: var=username_on_the_host
 
 
-
-
   - name: install application
     shell: |
       dpkg -x $HOME/hello-world-0.0.1.deb $HOME
       pkill sample
-      # . /home/dev-hello-world-app-int-test/platform-config
+      . /home/dev-hello-world-app-int-test/platform-config
       PORT=9091 $HOME/usr/bin/sample &
