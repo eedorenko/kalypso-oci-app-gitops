@@ -1,0 +1,22 @@
+- hosts: localhost
+  tasks:       
+  - name: check package already exists
+    shell:
+      cmd: ls $HOME | grep {{package_name}}}
+    register: deb_package_check
+    failed_when: deb_package_check.rc > 1
+    changed_when: deb_package_check.stdout == ""
+
+  - name: fetch package
+    get_url:
+      url: {{package_url}}
+      dest: $HOME/{{package_name}}}
+    when: deb_package_check.changed
+
+  - name: install application
+    shell: |
+      pkill -u $(whoami)
+      dpkg -x $HOME/{{package_name}}} $HOME      
+      . $HOME/platform-config
+      . {{app-config-file}}
+      $HOME/usr/bin/{{command}}

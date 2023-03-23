@@ -1,30 +1,10 @@
 ---
 - hosts: localhost
-  tasks:       
-  - name: check package already exists
-    shell:
-      cmd: ls $HOME | grep hello-world-0.0.1.deb
-    register: deb_package_check
-    failed_when: deb_package_check.rc > 1
-    changed_when: deb_package_check.stdout == ""
-
-  - name: fetch package
-    get_url:
-      url: https://eedorenko.github.io/kalypso-oci-app-src/hello-world-0.0.1.deb
-      dest: $HOME/hello-world-0.0.1.deb
-    when: deb_package_check.changed
-
-  # - name: get the username running the deploy
-  #   become: false
-  #   local_action: command whoami
-  #   register: username_on_the_host
-
-  # - debug: var=username_on_the_host
-
-
-  - name: install application
-    shell: |
-      dpkg -x $HOME/hello-world-0.0.1.deb $HOME
-      pkill sample
-      . /home/dev-hello-world-app-int-test/platform-config
-      PORT=9091 $HOME/usr/bin/sample &
+  gather_facts: no
+- name: install application
+  ansible.builtin.import_playbook: intstall-deb-package.yml
+  vars:
+    package_name: hello-world-0.0.1.deb
+    package_url: https://eedorenko.github.io/kalypso-oci-app-src/hello-world-0.0.1.deb
+    app-config-file: app-config.sh
+    command: sample
